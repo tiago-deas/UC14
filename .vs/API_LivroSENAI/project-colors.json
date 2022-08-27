@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d79e6cb9-0f35-40c0-b955-fa4b93820c45": {
+      "ProjectGuid": "d79e6cb9-0f35-40c0-b955-fa4b93820c45",
+      "DisplayName": "API_LivroSENAI",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
