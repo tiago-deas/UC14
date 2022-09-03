@@ -29,5 +29,7 @@ namespace API_LivroSENAI.Contexts
 
         public DbSet<Livro> Livros { get; set; }
 
+        public DbSet<Usuario> usuarios { get; set; }
+
     }
 }
