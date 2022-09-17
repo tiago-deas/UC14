@@ -1,6 +1,7 @@
 using API_LivroSENAI.Contexts;
 using API_LivroSENAI.Interfaces;
 using API_LivroSENAI.Repositories;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,26 @@ builder.Services.AddCors(options =>
 
     });
 });
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "JwtBearer";
+    options.DefaultAuthenticateScheme = "JwtBearer";
+}).AddJwtBearer("JwtBearer", options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+ValidateAudience = true,
+ValidateIssuer = true,
+ValidateLifetime = true,
+IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("API_LivroSENAI-autenticacao")),
+ClockSkew = TimeSpan.FromMinutes(60),
+ValidAudience = "chapter.webapi",
+ValidIssuer = "chapter.webapi"
+};
+});
+
+
 
 builder.Services.AddScoped<SQLContext, SQLContext>();
 
@@ -41,6 +62,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("CorsPolicy");
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

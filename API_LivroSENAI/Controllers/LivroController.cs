@@ -1,5 +1,6 @@
 ﻿using API_LivroSENAI.Models;
 using API_LivroSENAI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace API_LivroSENAI.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LivroController : ControllerBase
     {
 
@@ -52,8 +54,9 @@ namespace API_LivroSENAI.Controllers
             }
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
-
+        
         public IActionResult Cadastrar(Livro n)
         {
             try
